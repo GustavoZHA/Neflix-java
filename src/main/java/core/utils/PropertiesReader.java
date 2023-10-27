@@ -13,7 +13,7 @@ public class PropertiesReader {
         propertiesReader(path);
     }
 
-    private void propertiesReader(final String path) {
+    private void propertiesReader(String path) {
         try {
             InputStream inputStream = new FileInputStream(path);
             properties.load(inputStream);
@@ -22,7 +22,9 @@ public class PropertiesReader {
         }
     }
 
-    public String getProperty(final String property) {
-        return properties.getProperty(property);
+    public String getProperty(String property) {
+        String value= properties.getProperty(property);
+        if (value == null) throw new NullPointerException("The property '" + property + "' doesn't exit in file");
+        return value;
     }
 }
